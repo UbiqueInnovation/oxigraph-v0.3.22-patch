@@ -20,6 +20,7 @@ all-features = true
 
 [features]
 default = []
+rocksdb = ["oxrocksdb-sys"]
 http_client = ["oxhttp", "oxhttp/rustls"]
 rocksdb_debug = []
 
@@ -46,7 +47,7 @@ sparesults = { version = "0.1.8", path="sparesults", features = ["rdf-star"] }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 libc = "0.2"
-oxrocksdb-sys = { version = "0.3.22", path="../oxrocksdb-sys" }
+oxrocksdb-sys = { version = "0.3.22", path="../oxrocksdb-sys", optional = true }
 oxhttp = { version = "0.1", optional = true }
 
 [target.'cfg(all(target_family = "wasm", target_os = "unknown"))'.dependencies]
@@ -61,3 +62,4 @@ zstd = "0.12"
 [[bench]]
 name = "store"
 harness = false
+required-features = ["rocksdb"]
